@@ -20,5 +20,6 @@ namespace MusicTwitter.Data
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
         public DateTimeOffset? ModifiedUtc { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

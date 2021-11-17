@@ -61,9 +61,9 @@ namespace MusicTwitter.Services
                 var entity =
                     ctx
                     .SongPosts
-                    .Single(e => id == e.SongPostId && e.OwnerId == _userId);
-                return
-                    new SongPostDetail
+                    .Single(e => e.SongPostId == id);
+                
+                    var songpost = new SongPostDetail
                     {
                         Message = entity.Message,
                         CreatedUtc = entity.CreatedUtc,
@@ -72,6 +72,10 @@ namespace MusicTwitter.Services
                         SongTitle = entity.SongTitle,
                        
                     };
+                var service = new CommentServices(_userId);
+                var comments = service.GetCommentById(id);
+
+                return songpost;
             }
         }
 
@@ -82,13 +86,15 @@ namespace MusicTwitter.Services
                 var entity =
                     ctx
                     .SongPosts
-                    .Single(e => e.SongPostId == model.SongPostId && e.OwnerId == _userId);
+                    .Single(e => e.SongPostId == model.SongPostId);
 
                 entity.SongTitle = model.SongTitle;
                 entity.Message = model.Message;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
-                return ctx.SaveChanges() == 1;
+                ctx.SaveChanges();
+
+                return true;
             }
         }
 

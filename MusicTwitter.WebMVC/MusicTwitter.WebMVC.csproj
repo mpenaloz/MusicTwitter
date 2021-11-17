@@ -238,9 +238,11 @@
     <Content Include="Views\SongPost\Index.cshtml" />
     <Content Include="Views\SongPost\Create.cshtml" />
     <Content Include="Views\SongPost\Edit.cshtml" />
+    <Content Include="Views\SongPost\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

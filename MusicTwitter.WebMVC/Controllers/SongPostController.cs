@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using MusicTwitter.Data;
 using MusicTwitter.Models;
+using MusicTwitter.Models.CommentModels;
 using MusicTwitter.Services;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,10 @@ using System.Web.Mvc;
 
 namespace MusicTwitter.WebMVC.Controllers
 {
+    [RoutePrefix("[controller]")]
     public class SongPostController : Controller
     {
-        private ApplicationDbContext _db = new ApplicationDbContext();
+        
 
         // GET: SongPost
         public ActionResult Index()
@@ -22,6 +24,11 @@ namespace MusicTwitter.WebMVC.Controllers
             var model = service.GetSongPosts();
 
             return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
         }
 
         //Add method here
@@ -48,8 +55,9 @@ namespace MusicTwitter.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
+            var service = CreateSongPostService();
 
-            var detail = _db.SongPosts.Find(id);
+            var detail = service.GetSongPostById(id);
 
             var model = new SongPostEdit
             {
@@ -65,22 +73,25 @@ namespace MusicTwitter.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SongPostEdit model)
         {
-            if (ModelState.IsValid)
-            {
-                var service = CreateSongPostService();
+            var service = CreateSongPostService();
 
-                service.EditSongPost(model);
-                TempData["SaveResult"] = "Post successfully edited";
-                return RedirectToAction("Index");
-            }
-
-            if (model.SongPostId != id)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Id mismatch");
                 return View(model);
             }
 
-            ModelState.AddModelError("", "Your post could not be updated");
+            if(model.SongPostId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+            if (service.EditSongPost(model))
+            {
+                TempData["SaveResult"] = "Post was successfully modified.";
+                return RedirectToAction("Index");
+            }
+
+            
             return View(model);
         }
 
@@ -88,15 +99,6 @@ namespace MusicTwitter.WebMVC.Controllers
         {
             var service = CreateSongPostService();
             var model = service.GetSongPostById(id);
-
-            new SongPostDetail
-            {
-                Message = model.Message,
-                CreatedUtc = model.CreatedUtc,
-                ModifiedUtc = model.ModifiedUtc,
-                SongPostId = model.SongPostId,
-                SongTitle = model.SongTitle
-            };
 
             return View(model);
         }
@@ -109,11 +111,11 @@ namespace MusicTwitter.WebMVC.Controllers
 
             if (service.DeleteSongPost(id))
             {
-                TempData["SaveResult"] = "Note successfully deleted";
+                TempData["SaveResult"] = "Post successfully deleted";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Note could not be deleted");
+            
             return View();
         }
 
@@ -121,6 +123,78 @@ namespace MusicTwitter.WebMVC.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new SongPostService(userId);
+            return service;
+        }
+
+        public ActionResult Comment(int id)
+        {
+            var service = CreateSongPostService();
+
+            var viewModel = new CommentCreate();
+
+            viewModel.SongPostDetail = service.GetSongPostById(id);
+            viewModel.SongPostId = id;
+
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("Comment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comment(CommentCreate model)
+        {
+            var service = CreateCommentService();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (service.CreateComment(model))
+            {
+                TempData["SaveResult"] = "Comment added";
+                return RedirectToAction("Comment", model.SongPostId);
+            }
+
+            return View(model);
+        }
+
+        public ActionResult CommentDelete(int id)
+        {
+            var cmtService = CreateCommentService();
+
+            var comment = cmtService.GetCommentById(id);
+
+            var viewModel = new CommentDetail
+            {
+                Content = comment.Content,
+                SongPostDetail = comment.SongPostDetail,
+                OwnerId = comment.OwnerId,
+                SongPostId = comment.SongPostId,
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("CommentDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteComment(int id)
+        {
+            var service = CreateCommentService();
+
+            if (service.DeleteComment(id))
+            {
+                TempData["SaveResult"] = "Comment deleted";
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+
+        private CommentServices CreateCommentService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CommentServices(userId);
             return service;
         }
     }

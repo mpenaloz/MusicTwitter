@@ -11,7 +11,7 @@ namespace MusicTwitter.Models
     {
         [Required]
         public string SongTitle { get; set; }
-        [Required]
+       
         public string Message { get; set; }
     }
 }
