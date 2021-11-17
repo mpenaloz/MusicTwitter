@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.WebMVC", "MusicTwitter.WebMVC\MusicTwitter.WebMVC.csproj", "{7E0853A1-84F8-4F79-A75F-C0D7EA5C123E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.Data", "MusicTwitter.Data\MusicTwitter.Data.csproj", "{7AC58C56-108B-4B0F-8162-71B1D36F4D85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.Models", "MusicTwitter.Models\MusicTwitter.Models.csproj", "{98A12FDB-47C2-4909-9522-62601F947C28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.Services", "MusicTwitter.Services\MusicTwitter.Services.csproj", "{F577D5DA-45E5-4F26-B284-CD389DB49EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.Contracts", "MusicTwitter.Contracts\MusicTwitter.Contracts.csproj", "{E79698DB-37EE-4719-BAC7-59EE3D2A5E0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTwitter.Tests", "MusicTwitter.Tests\MusicTwitter.Tests.csproj", "{D247A96A-864A-46D1-82E0-FDF9DB4ADD0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E0853A1-84F8-4F79-A75F-C0D7EA5C123E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0853A1-84F8-4F79-A75F-C0D7EA5C123E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0853A1-84F8-4F79-A75F-C0D7EA5C123E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0853A1-84F8-4F79-A75F-C0D7EA5C123E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC58C56-108B-4B0F-8162-71B1D36F4D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC58C56-108B-4B0F-8162-71B1D36F4D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC58C56-108B-4B0F-8162-71B1D36F4D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC58C56-108B-4B0F-8162-71B1D36F4D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A12FDB-47C2-4909-9522-62601F947C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A12FDB-47C2-4909-9522-62601F947C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A12FDB-47C2-4909-9522-62601F947C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A12FDB-47C2-4909-9522-62601F947C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F577D5DA-45E5-4F26-B284-CD389DB49EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F577D5DA-45E5-4F26-B284-CD389DB49EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F577D5DA-45E5-4F26-B284-CD389DB49EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F577D5DA-45E5-4F26-B284-CD389DB49EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E79698DB-37EE-4719-BAC7-59EE3D2A5E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E79698DB-37EE-4719-BAC7-59EE3D2A5E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E79698DB-37EE-4719-BAC7-59EE3D2A5E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E79698DB-37EE-4719-BAC7-59EE3D2A5E0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D247A96A-864A-46D1-82E0-FDF9DB4ADD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D247A96A-864A-46D1-82E0-FDF9DB4ADD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D247A96A-864A-46D1-82E0-FDF9DB4ADD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D247A96A-864A-46D1-82E0-FDF9DB4ADD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C6CB59F-818D-4D96-BC0A-DAF900B908C2}
+	EndGlobalSection
+EndGlobal
